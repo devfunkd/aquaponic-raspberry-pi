@@ -1,0 +1,121 @@
+﻿@model AquaCultureMonitor.Models.SensorModel
+
+<script type="text/javascript">
+    function showChart(id, name) {
+
+        $.getJSON("/sensor/data/" + id, function (data) {
+
+            var chart = new CanvasJS.Chart(id, {
+                title: {
+                    text: name
+                },
+                axisX: {
+                    title: "time",
+                    labelFontSize: 12,
+                    labelAngle: 45
+                },
+                axisY: {
+                    title: "degrees"
+                },
+                animationEnabled: true,
+                data: [
+                {
+                    type: "splineArea",
+                    lineThickness: 2,
+                    dataPoints: data
+                }]
+            });
+
+            chart.render();
+        });       
+    }
+</script>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>
+            <a href="/"><i class="fa fa-chevron-left"></i></a>
+            @Model.Name
+        </h1>
+    </div>
+</div>
+<div class="row" data-id="@Model.Id" data-name="@Model.Name">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Sensor Details</div>
+            <div class="panel-body" data-id="@Model.Id">
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Name</strong>
+                        <span class="pull-right">@Model.Name</span>
+                    </li>
+                    <li>
+                        <strong>Type</strong>
+                        <span class="pull-right">@Model.Type Sensor</span>
+                    </li>
+                    <li>
+                        <strong>Last Reading</strong>
+                        <span class="pull-right">@Model.Readings.Last().DateTime.ToString("MMM dd, yyyy h:mmtt")</span>
+                    </li>
+                    <li>
+                        <strong>Status</strong>
+                        <span class="pull-right sensor-reading"></span>
+                    </li>
+                </ul>   
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Data Readings</div>
+            <div class="panel-body">
+                <div id="@Model.Id" style="height: 500px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script type="text/javascript">
+    checkSensor();
+
+    var id = $('div[data-id]').data('id');
+    var name = $('div[data-name]').data('name');
+
+    showChart(id, name);
+
+    $(function () {
+        $.connection.sensorHub.logging = true;
+
+        var apiHub = $.connection.sensorHub;
+        apiHub.client.updateSensor = function (sensorId, sensorValue) {
+
+            $('.sensor-reading').text(sensorValue);
+            checkSensor();
+            showChart(id, name);
+        };
+
+    });
+
+    function checkSensor() {
+
+        $('div[data-id]').each(function () {
+
+            var sensorId = $(this).data('id');
+
+            $.getJSON("/sensor/" + sensorId + "/status", function (data) {
+                $('.sensor-reading').text(data.status);
+
+                if (data.status == "sensor online") {
+                    $('.sensor-reading').css("color", "green");
+                } else {
+                    $('.sensor-reading').css("color", "orange");
+                }
+            });
+        });
+
+        setTimeout(checkSensor, 1200000);
+    }
+</script>

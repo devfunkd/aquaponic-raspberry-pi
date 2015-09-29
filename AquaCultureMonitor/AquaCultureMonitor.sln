@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaCultureMonitor.Tests", "AquaCultureMonitor.Tests\AquaCultureMonitor.Tests.csproj", "{B57359DA-8468-4A50-87CF-287C86AF0BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaCultureMonitor.Core", "AquaCultureMonitor.Core\AquaCultureMonitor.Core.csproj", "{132B9520-A3AB-4B3B-8D2B-D8DC661A7158}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Sensor.Library", "Sensor.Library\Sensor.Library.pyproj", "{030FD173-4E97-49BF-99C3-38640E20C133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaCultureMonitor", "AquaCultureMonitor\AquaCultureMonitor.csproj", "{02D87CDF-8000-46A4-BDC1-53FD03EBF42B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B57359DA-8468-4A50-87CF-287C86AF0BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57359DA-8468-4A50-87CF-287C86AF0BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57359DA-8468-4A50-87CF-287C86AF0BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57359DA-8468-4A50-87CF-287C86AF0BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132B9520-A3AB-4B3B-8D2B-D8DC661A7158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132B9520-A3AB-4B3B-8D2B-D8DC661A7158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132B9520-A3AB-4B3B-8D2B-D8DC661A7158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132B9520-A3AB-4B3B-8D2B-D8DC661A7158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030FD173-4E97-49BF-99C3-38640E20C133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030FD173-4E97-49BF-99C3-38640E20C133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D87CDF-8000-46A4-BDC1-53FD03EBF42B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02D87CDF-8000-46A4-BDC1-53FD03EBF42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02D87CDF-8000-46A4-BDC1-53FD03EBF42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D87CDF-8000-46A4-BDC1-53FD03EBF42B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

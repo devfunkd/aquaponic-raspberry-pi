@@ -1,0 +1,64 @@
+﻿@model AquaCultureMonitor.Models.SensorModel
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>
+            <a href="/"><i class="fa fa-chevron-left"></i></a>
+            Sensor Management
+        </h1>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 well">
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info">@ViewBag.Message</div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <p>
+                        Adding a new sensor allows you create a sensor identification number used by your aquaculture monitoring system to syncronize data readings to your dashboard.
+                        Provide a name for your sensor and choose the type of sensor below to get started.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Sensor Name" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    @Html.EnumDropDownListFor(m => m.Type, "Sensor Type", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input type="submit" class="btn btn-primary" value="Create" />
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        }
+    </div>
+    @if (Model.Sensors.Any())
+    {
+        <div class="col-lg-12 col-md-12 col-sm-12 well">
+            @foreach (var sensor in Model.Sensors)
+            {
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        <h4 class="list-group-item-heading">@sensor.Name</h4>
+                        <p class="list-group-item-text">Sensor ID: @sensor.Id.ToString().ToUpper()</p>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="col-lg-12 col-md-12 col-sm-12 well text-center">
+            <span>No Active Sensors Were Found!</span>
+        </div>
+    }
+
+</div>

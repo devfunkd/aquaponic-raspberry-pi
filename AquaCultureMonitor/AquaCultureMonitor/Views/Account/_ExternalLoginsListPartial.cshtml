@@ -1,0 +1,17 @@
+﻿@model AquaCultureMonitor.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+@{
+	var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+	if (loginProviders.Any())
+	{
+
+		using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+		{
+			foreach (AuthenticationDescription p in loginProviders)
+			{
+				<button type="submit" class="btn btn-primary" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using @p.Caption">Log in using @p.AuthenticationType</button>
+			}
+		}
+	}
+}

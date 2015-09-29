@@ -1,0 +1,55 @@
+﻿@model AquaCultureMonitor.Models.IndexViewModel
+@{
+	ViewBag.Title = "Manage";
+}
+
+<div class="section-container">
+	<div class="container">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					<div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/img/default-user-icon-profile.png" class="img-circle"> </div>
+					<div class=" col-md-9 col-lg-9 ">
+						<h1>@Model.User.FirstName @Model.User.LastName</h1>
+						<p class="text-success">@ViewBag.StatusMessage</p>
+						<table class="table table-user-information">
+							<tbody>
+								<tr>
+									<td>Email:</td>
+									<td>
+										@(Model.User.Email ?? "None")
+										@if (Model.User.EmailConfirmed)
+										{
+											@: &nbsp;(verified)&nbsp;
+										}
+									</td>
+								</tr>
+								<tr>
+									<td>Phone:</td>
+									<td>
+										@(Model.PhoneNumber ?? "None")
+										@if (Model.PhoneNumber != null)
+										{
+											@Html.ActionLink("Change", "AddPhoneNumber")
+											@: &nbsp;|&nbsp;
+											@Html.ActionLink("Remove", "RemovePhoneNumber")
+										}
+										else
+										{
+											@Html.ActionLink("Add", "AddPhoneNumber")
+										}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						@(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword", null, new { @class = "btn btn-primary" }) : Html.ActionLink("Create", "SetPassword", null, new { @class = "btn btn-primary" }))
+						<a href="/home/manage" class="btn btn-primary">
+							Manage Sensors
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

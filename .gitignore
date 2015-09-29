@@ -1,0 +1,8 @@
+/AquaCultureMonitor/AquaCultureMonitor/bin
+/AquaCultureMonitor/AquaCultureMonitor/obj
+/AquaCultureMonitor/*.suo
+/AquaCultureMonitor/AquaCultureMonitor.Core/bin
+/AquaCultureMonitor/AquaCultureMonitor.Core/obj
+/AquaCultureMonitor/AquaCultureMonitor.Tests/bin
+/AquaCultureMonitor/AquaCultureMonitor.Tests/obj
+/AquaCultureMonitor/packages
