@@ -33,7 +33,7 @@ namespace AquaCultureMonitor.Core.Gateways
             };
 
             testMessage.AddTo(email);
-            testMessage.From = new MailAddress("no-reply@stircrazy.ca", "Stir Crazy Family Fun Centre");
+            testMessage.From = new MailAddress("no-reply@no-domain.com", "AquaCulture Monitor");
 
             transportWeb.Deliver(testMessage);
 
